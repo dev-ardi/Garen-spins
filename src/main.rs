@@ -18,7 +18,7 @@ fn main() {
     let mut last_values_rune: Vec<f32> = vec![0.0; 10];
     for i in 0..18 {
         let base = base(i);
-
+        println!("\n## {}\n\n", i+1);
         let i = i as f32;
 
         let only_dagger = base + dagger;
@@ -54,6 +54,7 @@ fn main() {
         for (n, (name, spins)) in spin_map.iter().enumerate() {
             if spins > &last_values[n] {
                 println!("At level {}, {name} gives {spins} spins", i + 1.0);
+                println!();
             }
         }
         last_values = spin_map.iter().map(|(_, speed)| *speed).collect::<Vec<_>>();
@@ -73,6 +74,7 @@ fn main() {
             if spins > &last_values_rune[n] && spins > &last_values[n]
             {
                 println!("At level {}, with rune {name} gives {spins} spins", i + 1.0);
+                println!();
             }
         }
         last_values_rune = spin_map_rune
