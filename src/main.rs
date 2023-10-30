@@ -14,24 +14,19 @@ fn main() {
 
     let spins_at_1 = 7.0;
 
-    let mut last_values: Vec<f32> = vec![0.0; 10];
-    let mut last_values_rune: Vec<f32> = vec![0.0; 10];
+    let mut last_values: Vec<f32> = vec![0.0; 11];
+    let mut last_values_rune: Vec<f32> = vec![0.0; 11];
     for i in 0..18 {
         let base = base(i);
-        println!("\n## {}\n\n", i+1);
+        println!("\n## {}\n", i+1);
         let i = i as f32;
 
         let only_dagger = base + dagger;
         let only_boots = base + boots;
         let only_stride = base + stride;
         let only_axe = base + zeal_or_axe;
-        let axe_and_boots = only_axe + boots;
-
         let standard = base + stride + boots;
 
-        let one_zeal = standard + zeal_or_axe;
-        let two_zeal = one_zeal + zeal_or_axe;
-        let plus_one_dagger = standard + dagger;
 
         let map = vec![
             ("base stats", base),
@@ -39,11 +34,12 @@ fn main() {
             ("only boots", only_boots),
             ("only stride", only_stride),
             ("hearthbound axe", only_axe),
-            ("hearthbound axe + boots", axe_and_boots),
+            ("boots with dagger", only_boots + dagger),
+            ("hearthbound axe + boots", only_axe + boots),
             ("Stridebreaker + boots", standard),
-            ("Stridebreaker + boots + one zeal", one_zeal),
-            ("Stridebreaker + boots + two zeals", two_zeal),
-            ("Stridebreaker + boots + one dagger", plus_one_dagger),
+            ("Stridebreaker + boots + one zeal", standard + zeal_or_axe),
+            ("Stridebreaker + boots + two zeals", standard + zeal_or_axe * 2.0),
+            ("Stridebreaker + boots + one dagger", standard + dagger),
         ];
 
         let spin_map = map
